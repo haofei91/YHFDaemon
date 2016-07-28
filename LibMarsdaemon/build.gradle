@@ -1,0 +1,65 @@
+
+apply plugin: 'com.android.library'
+
+
+android {
+    compileSdkVersion 21
+    buildToolsVersion "21.1.1"
+
+    defaultConfig {
+        minSdkVersion 10
+        targetSdkVersion 21
+        versionCode 1
+        versionName "1.0"
+
+        sourceSets.main {
+            //jni.srcDirs = []
+            // 默认情况下，你需要把C/C++源代码放在[module]/src/main/jni/路径下
+            //自定义源代码路径
+            //jni.srcDirs 'src/main/jni'
+            //设置你的.so文件的实际路径，用于调用System.loadLibrary( libName );
+            //默认是再app/src/main/jniLibs中
+            jniLibs.srcDir "src/main/jniLibs"
+        }
+    }
+
+    sourceSets {
+        main {
+            jni.srcDirs = []//设置禁止gradle生成Android.mk
+            jniLibs.srcDirs = ['src/main/jniLibs']//设置目标的so存放路径
+        }
+    }
+
+    tasks.withType(JavaCompile) {
+        compileTask -> compileTask.dependsOn 'ndkBuild', 'clearJniLibs','copyJniLibs','copy2files'
+    }
+    task ndkBuild(type: Exec) {//设置新的so的生成目录
+
+        def ndkBuildingDir = project.plugins.findPlugin('com.android.library').sdkHandler.getNdkFolder().absolutePath
+        commandLine ndkBuildingDir + "/ndk-build.cmd", '-C', 'src/main/jni',
+                "NDK_OUT=$buildDir/intermediates/ndk/obj",
+                "NDK_APP_DST_DIR=$buildDir/intermediates/ndk/libs/\$(TARGET_ARCH_ABI)"
+    }
+
+    task clearJniLibs(type: Delete) {
+
+        delete file('src/main/jniLibs')
+    }
+
+    task copyJniLibs(type: Copy) {//将新生成的so拷贝到jniLibs目录
+
+        from fileTree(dir: file(buildDir.absolutePath + '/intermediates/ndk/libs'), exclude: '**/*.so')
+        into file('src/main/assets')
+    }
+
+    task copy2files(type: Copy) {//将新生成的so拷贝到jniLibs目录
+
+        from fileTree(dir: file(buildDir.absolutePath + '/intermediates/ndk/libs'), include: '**/*.so')
+        into file('src/main/jniLibs')
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+}
