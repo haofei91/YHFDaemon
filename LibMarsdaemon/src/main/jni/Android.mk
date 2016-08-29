@@ -9,7 +9,7 @@ include $(BUILD_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE    := daemon_api21
-LOCAL_SRC_FILES := daemon_api21.c \
+LOCAL_SRC_FILES := daemon_api21_execlp.c \
 	common.c
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/include
 LOCAL_LDLIBS := -L$(SYSROOT)/usr/lib -llog -lm -lz
@@ -18,6 +18,15 @@ include $(BUILD_SHARED_LIBRARY)
 include $(CLEAR_VARS)
 LOCAL_MODULE    := daemon
 LOCAL_SRC_FILES := daemon.c
+LOCAL_CFLAGS += -pie -fPIE
+LOCAL_LDFLAGS += -pie -fPIE
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/include
+LOCAL_LDLIBS += -L$(SYSROOT)/usr/lib -llog -lm -lz
+include $(BUILD_EXECUTABLE)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE    := daemon21
+LOCAL_SRC_FILES := daemon21.c
 LOCAL_CFLAGS += -pie -fPIE
 LOCAL_LDFLAGS += -pie -fPIE
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/include

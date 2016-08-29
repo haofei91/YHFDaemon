@@ -3,6 +3,7 @@ package com.marswin89.marsdaemon.demo;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 
 /**
  * DO NOT do anything in this Receiver!<br/>
@@ -12,6 +13,6 @@ import android.content.Intent;
 public class Receiver2 extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-
+        Log.i("YHF-Receiver2","Receiver2 onReceive ");
     }
 }

@@ -5,9 +5,7 @@ import android.os.Build;
 import android.util.Log;
 
 import com.marswin89.marsdaemon.strategy.DaemonStrategy21;
-import com.marswin89.marsdaemon.strategy.DaemonStrategy23;
 import com.marswin89.marsdaemon.strategy.DaemonStrategyUnder21;
-import com.marswin89.marsdaemon.strategy.DaemonStrategyXiaomi;
 
 /**
  * define strategy method
@@ -70,10 +68,7 @@ public interface IDaemonStrategy {
 			int sdk = Build.VERSION.SDK_INT;
 			Log.i(TAG,"fetchStrategy，SDK_INT: "+sdk);
 			switch (sdk) {
-				case 23:
-					mDaemonStrategy = new DaemonStrategy23();
-					break;
-					
+
 				case 22:
 					mDaemonStrategy = new DaemonStrategy21();
 					break;
@@ -87,9 +82,7 @@ public interface IDaemonStrategy {
 					break;
 				
 				default:
-					if(Build.MODEL != null && Build.MODEL.toLowerCase().startsWith("mi")){
-						mDaemonStrategy = new DaemonStrategyXiaomi();
-					}else if(Build.MODEL != null && Build.MODEL.toLowerCase().startsWith("a31")){
+					 if(Build.MODEL != null && Build.MODEL.toLowerCase().startsWith("a31")){
 						mDaemonStrategy = new DaemonStrategy21();
 					}else{
 						mDaemonStrategy = new DaemonStrategyUnder21();

@@ -23,5 +23,5 @@ public class NativeDaemonAPI21 extends NativeDaemonBase{
 		}
 	}
 	
-	public native void doDaemon(String indicatorSelfPath, String indicatorDaemonPath, String observerSelfPath, String observerDaemonPath);
+	public native void doDaemon(String ABPath,String indicatorSelfPath, String indicatorDaemonPath, String observerSelfPath, String observerDaemonPath, String pkgName, String svcName, String daemonPath);
 }

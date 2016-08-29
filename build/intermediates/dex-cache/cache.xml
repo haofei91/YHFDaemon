@@ -2,11 +2,11 @@
 <items version="2" >
 
     <item
-        jar="E:\mysfworkspace\MarsDaemon-master\DemoMarsdaemon\build\intermediates\exploded-aar\MarsDaemon-master\LibMarsdaemon\unspecified\jars\classes.jar"
+        jar="E:\mysfworkspace\MarsDaemon-master\YHFDaemon\DemoMarsdaemon\build\intermediates\exploded-aar\YHFDaemon\LibMarsdaemon\unspecified\jars\classes.jar"
         jumboMode="false"
         revision="21.1.1"
-        sha1="f7d38fdf69064995e80ed84e2a2c7ddecd9d2c83">
-        <dex dex="E:\mysfworkspace\MarsDaemon-master\DemoMarsdaemon\build\intermediates\pre-dexed\debug\MarsDaemon-master-LibMarsdaemon-unspecified_bb0dc7fd7a2ef6fe2989ac87c6693f6a222d306c.jar" />
+        sha1="4cbe0e1703ff1d8a2fbd08a6a09656e02765a8be">
+        <dex dex="E:\mysfworkspace\MarsDaemon-master\YHFDaemon\DemoMarsdaemon\build\intermediates\pre-dexed\debug\YHFDaemon-LibMarsdaemon-unspecified_6f701b555259a9653166338f7edfffcb647f2767.jar" />
     </item>
 
 </items>

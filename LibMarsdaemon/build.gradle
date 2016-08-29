@@ -46,13 +46,13 @@ android {
         delete file('src/main/jniLibs')
     }
 
-    task copyJniLibs(type: Copy) {//将新生成的so拷贝到jniLibs目录
+    task copyJniLibs(type: Copy) {
 
         from fileTree(dir: file(buildDir.absolutePath + '/intermediates/ndk/libs'), exclude: '**/*.so')
         into file('src/main/assets')
     }
 
-    task copy2files(type: Copy) {//将新生成的so拷贝到jniLibs目录
+    task copy2files(type: Copy) {
 
         from fileTree(dir: file(buildDir.absolutePath + '/intermediates/ndk/libs'), include: '**/*.so')
         into file('src/main/jniLibs')
